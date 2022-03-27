@@ -1,35 +1,30 @@
 <template>
-        <div class="col-md-12">
-            
-
-
-
-
-
-
-
-
-
-        </div>
+    <button v-on:click="logout">Logout</button>
 </template>
 
 <script>
 
-
-
-export default {
-    methods:
-    {
-
+export default({
+    data(){
+        return{
+            
+        }
     },
-    
-	components: {
-		
-	},
-	data() {
-		return {
-			
-		}
-	},
-}
+    created() {
+        document.title = this.$props.title;
+    },
+    props: {
+        title: String
+    },
+    methods:{
+        logout(){
+            window.localStorage.clear();
+            this.$router.push({ name: 'Login' });
+        },
+    }
+})
 </script>
+
+<style scoped>
+  
+</style>

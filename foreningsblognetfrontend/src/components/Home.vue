@@ -3,9 +3,9 @@
             
 
 
+	<h1> Hello world </h1>
 
-
-
+	<button type="button" class="signup" v-on:click="Login">Login</button>
 
 
 
@@ -18,18 +18,14 @@
 
 
 export default {
-    methods:
-    {
+    methods:{
 
-    },
-    
-	components: {
-		
-	},
-	data() {
-		return {
-			
-		}
-	},
+	
+   Login(){
+            this.$router.push({ name: 'Login' });
+        },
+    }
+	
+	
 }
 </script>
