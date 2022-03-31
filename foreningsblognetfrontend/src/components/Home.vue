@@ -1,31 +1,35 @@
 <template>
-        <div class="col-md-12">
-            
+  <div class="col-md-12">
+    <button type="button" class="signup" v-on:click="Login">Login</button>
 
-
-	<h1> Hello world </h1>
-
-	<button type="button" class="signup" v-on:click="Login">Login</button>
-
-
-
-
-        </div>
+    <button type="button" class="Hello" v-on:click="GetUsers">
+      ListofUsers
+    </button>
+    <div id="app">
+      {{ Users }}
+    </div>
+  </div>
 </template>
 
 <script>
-
-
+import axios from "axios";
 
 export default {
-    methods:{
+    data(){
+        return{
+            Users:[]
+        }
+    },
+  methods: {
+    async GetUsers() {
+      axios
+        .get("https://localhost:7282/api/users")
+        .then((response) => (this.Users = response.data));
+    },
 
-	
-   Login(){
-            this.$router.push({ name: 'Login' });
-        },
-    }
-	
-	
-}
+    Login() {
+      this.$router.push({ name: "Login" });
+    },
+  },
+};
 </script>
