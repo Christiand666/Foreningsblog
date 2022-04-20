@@ -19,7 +19,7 @@
                     </div>
                     <div class="clearfix">
                         <button type="button" class="signin" v-on:click="login">Sign in</button>
-                        <button type="button" class="signup" v-on:click="signup">Sing up</button>
+                        <button type="button" class="signup" v-on:click="signup">Sign up</button>
                     </div>
                 </div>
             </div>
