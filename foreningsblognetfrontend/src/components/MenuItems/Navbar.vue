@@ -3,6 +3,7 @@
 	<ul>
 	<li><a href="/home">Home</a></li>
 	<li><a href="/login">Login</a></li>
+	<li><a href="/events">Events</a></li>
 	</ul>  
 </div>
 </template>

@@ -23,7 +23,7 @@ export default {
   methods: {
     async GetUsers() {
       axios
-        .get("https://localhost:7282/api/users")
+        .get("https://localhost:49165/api/users")
         .then((response) => (this.Users = response.data));
     },
 

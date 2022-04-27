@@ -1,5 +1,6 @@
 const {createRouter, createWebHistory } = require("vue-router");
 import Login from "../components/Login.vue"
+import Events from "../components/Events.vue"
 import Register from "../components/Register.vue"
 import Home from "../components/Home.vue";
 
@@ -22,6 +23,11 @@ const routes = [
       path: "/register",
       name:"Register",
       component: Register,
+    },
+    {
+      path: "/events",
+      name:"Events",
+      component: Events,
     },
     {
       path: "/404",
