@@ -1,8 +1,15 @@
 <template>
-    <div class="container">
-      <Navbar />
-      <router-view></router-view>
-      <FooterSection />
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 offset-sm-3">
+          <Navbar />
+          <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
+          <router-view></router-view>
+           </div>
+          <FooterSection />
+       </div>
+      </div>
     </div>
 </template>
 
@@ -19,7 +26,18 @@ export default {
   components: {
     FooterSection,
     Navbar
-  }
+  },
+  computed: {
+        alert () {
+            return this.$store.state.alert
+        }
+    },
+    watch:{
+        $route (to, from){
+            // clear alert on location change
+            this.$store.dispatch('alert/clear');
+        }
+    } 
 }
 </script>
 

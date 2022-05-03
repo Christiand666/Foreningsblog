@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12">
-    <button type="button" class="signup" v-on:click="Login">Login</button>
+    
 
     <button type="button" class="Hello" v-on:click="GetUsers">
       ListofUsers
@@ -8,6 +8,9 @@
     <div id="app">
       {{ Users }}
     </div>
+        <p>
+            <router-link to="/login">Logout</router-link>
+        </p>
   </div>
 </template>
 
@@ -27,9 +30,6 @@ export default {
         .then((response) => (this.Users = response.data));
     },
 
-    Login() {
-      this.$router.push({ name: "Login" });
-    },
   },
 };
 </script>

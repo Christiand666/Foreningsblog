@@ -3,15 +3,27 @@
 	<ul>
 	<li><a href="/home">Home</a></li>
 	<li><a href="/login">Login</a></li>
+  <li>
+  <a href="/login">Logout</a>
+  </li>
 	<li><a href="/events">Events</a></li>
 	</ul>  
 </div>
 </template>
 
 <script>
-export default {
-  name: 'Navbar',
-};
+import { authenticationService } from "../ServicesHelp/authentication.service.js"
+export default({
+    name: 'Navbar',
+        
+    methods:{
+        back(){
+            var currentUser = authenticationService.currentUserValue;
+        }
+        
+    }
+})
+
 </script>
 
 <style>
