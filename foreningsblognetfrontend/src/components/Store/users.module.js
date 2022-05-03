@@ -3,7 +3,13 @@ import { userService } from '../ServicesHelp/user.service';
 export const users = {
     namespaced: true,
     state: {
-        all: {}
+        all: {},
+        isLoggedIn: false
+    },
+    getters:{
+        GetLoginState(state){
+            return state.isLoggedIn
+        }
     },
     actions: {
         getAll({ commit }) {
@@ -14,6 +20,9 @@ export const users = {
                     users => commit('getAllSuccess', users),
                     error => commit('getAllFailure', error)
                 );
+        },
+        UpdateLogin({commit}, state){
+            commit('UpdateIsloggedIn', state);    
         }
     },
     mutations: {
@@ -25,6 +34,9 @@ export const users = {
         },
         getAllFailure(state, error) {
             state.all = { error };
+        },
+        UpdateIsloggedIn(state, value){
+            state.isLoggedIn = value;
         }
     }
 }

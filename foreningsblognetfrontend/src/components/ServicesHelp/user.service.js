@@ -1,4 +1,8 @@
 import { requestOptions } from '../Helpers/request-options';
+//import { mapActions} from 'vuex';
+import {store} from '../Store'
+
+//const actions = mapActions({UpdateLogin: 'users/UpdateLogin'})
 
 export const userService = {
     login,
@@ -18,6 +22,7 @@ function login(Email, password) {
         .then(user => {
             // login successful if there's a jwt token in the response
             if (user.token) {
+                store.dispatch('users/UpdateLogin', true)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }

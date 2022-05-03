@@ -66,7 +66,7 @@ const routes =
     const loggedIn = localStorage.getItem('user');
   
     if (authRequired && !loggedIn) {
-      return ('/login');
+      //return ('/login');
     }
    
     if (authorize) {

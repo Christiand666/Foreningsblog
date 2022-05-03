@@ -1,9 +1,9 @@
 <template>
 <div class="navbar-container">
 	<ul>
-	<li><a href="/home">Home</a></li>
-	<li v-if="!CS.isLoggedIn"><a href="/login">Login</a></li>
-  <li v-if="CS.isLoggedIn">
+	<li><a href="/">Home</a></li>
+	<li v-if="!$store.state.users.isLoggedIn"><a href="/login">Login</a></li>
+  <li v-if="$store.state.users.isLoggedIn">
   <a href="/login">Logout</a>
   </li>
 	<li><a href="/events">Events</a></li>
@@ -12,25 +12,28 @@
 </template>
 
 <script>
-//import { authenticationService } from "../ServicesHelp/authentication.service.js"
-import { CurrentSession } from '../ServicesHelp/GlobalVariables';
+import {mapGetters} from 'vuex'
+// import { CurrentSession } from '../ServicesHelp/GlobalVariables';
 export default({
     name: 'Navbar',
         
     data: () => ({
-		CS: CurrentSession
+		//CS: CurrentSession
 	}),
-  mounted: function() {
-    let user = JSON.parse(localStorage.getItem('user'));
-    if(user && user.token) 
-        {
-            CurrentSession.isLoggedIn = true
-        }
-        if(!user && !user.token)
-        {
-            CurrentSession.isLoggedIn = false
-        }
-    },
+  //mounted: function() {
+    //let user = JSON.parse(localStorage.getItem('user'));
+    //if(user && user.token) 
+        //{
+            //CurrentSession.isLoggedIn = true
+        //}
+        //if(!user && !user.token)
+        //{
+            //CurrentSession.isLoggedIn = false
+    //     }
+    // },
+    computed: {
+      ...mapGetters(['GetLoginState'])
+    }
 })
 
 </script>
