@@ -54,8 +54,11 @@ export default {
             const { dispatch } = this.$store;
             if (Email && password) {
                 dispatch('authentication/login', { Email, password });
-            }
-        }
+            }   
+        },
+        signup(){
+            this.$router.push({ name: 'Register' });
+        },
     }
 }
 </script>

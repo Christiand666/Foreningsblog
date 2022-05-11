@@ -3,9 +3,8 @@
 	<ul>
 	<li><a href="/">Home</a></li>
 	<li v-if="!$store.state.users.isLoggedIn"><a href="/login">Login</a></li>
-  <li v-if="$store.state.users.isLoggedIn">
-  <a href="/login">Logout</a>
-  </li>
+  <li v-if="$store.state.users.isLoggedIn"><a href="/login">Logout</a></li>
+  <li v-if="!$store.state.users"><a href="/adminpage">Admin</a></li>
 	<li><a href="/events">Events</a></li>
 	</ul>  
 </div>
