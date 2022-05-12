@@ -4,11 +4,15 @@ export const users = {
     namespaced: true,
     state: {
         all: {},
-        isLoggedIn: false
+        isLoggedIn: false,
+        isAdmin: false
     },
     getters:{
         GetLoginState(state){
             return state.isLoggedIn
+        },
+        GetAdminState(state){
+            return state.isAdmin
         }
     },
     actions: {
@@ -23,6 +27,12 @@ export const users = {
         },
         UpdateLogin({commit}, state){
             commit('UpdateIsloggedIn', state);    
+        },
+        UpdateRegister({commit}, state){
+            commit('UpdateRegister', state)
+        },
+        UpdateAdmin({commit}, state){
+            commit('UpdateIsAdmin', state);
         }
     },
     mutations: {

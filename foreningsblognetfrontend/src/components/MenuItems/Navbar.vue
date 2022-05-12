@@ -4,7 +4,7 @@
 	<li><a href="/">Home</a></li>
 	<li v-if="!$store.state.users.isLoggedIn"><a href="/login">Login</a></li>
   <li v-if="$store.state.users.isLoggedIn"><a href="/login">Logout</a></li>
-  <li v-if="!$store.state.users"><a href="/adminpage">Admin</a></li>
+  <li v-if="!$store.state.users.isAdmin"><a href="/adminpage">Admin</a></li>
 	<li><a href="/events">Events</a></li>
 	</ul>  
 </div>
@@ -12,26 +12,17 @@
 
 <script>
 import {mapGetters} from 'vuex'
-// import { CurrentSession } from '../ServicesHelp/GlobalVariables';
+
 export default({
     name: 'Navbar',
         
     data: () => ({
-		//CS: CurrentSession
+		
 	}),
-  //mounted: function() {
-    //let user = JSON.parse(localStorage.getItem('user'));
-    //if(user && user.token) 
-        //{
-            //CurrentSession.isLoggedIn = true
-        //}
-        //if(!user && !user.token)
-        //{
-            //CurrentSession.isLoggedIn = false
-    //     }
-    // },
+  
     computed: {
-      ...mapGetters(['GetLoginState'])
+      ...mapGetters(['GetLoginState']),
+      
     }
 })
 

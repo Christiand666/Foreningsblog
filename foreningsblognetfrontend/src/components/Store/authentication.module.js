@@ -30,6 +30,7 @@ export const authentication = {
             commit('logout');
         }
     },
+    
     mutations: {
         loginRequest(state, user) {
             state.status = { loggingIn: true };
@@ -46,6 +47,7 @@ export const authentication = {
         logout(state) {
             state.status = {};
             state.user = null;
-        }
+        },
+        
     }
 }

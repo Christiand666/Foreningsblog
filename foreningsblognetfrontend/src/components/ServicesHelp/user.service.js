@@ -1,13 +1,14 @@
 import { requestOptions } from '../Helpers/request-options';
-//import { mapActions} from 'vuex';
 import {store} from '../Store'
 
-//const actions = mapActions({UpdateLogin: 'users/UpdateLogin'})
+
 
 export const userService = {
     login,
     logout,
-    getAll
+    getAll,
+    Register
+
 };
 
 function login(Email, password) {
@@ -23,6 +24,7 @@ function login(Email, password) {
             // login successful if there's a jwt token in the response
             if (user.token) {
                 store.dispatch('users/UpdateLogin', true)
+                
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }
@@ -30,6 +32,22 @@ function login(Email, password) {
             return user;
         });
 }
+
+function Register(Email, password, FullName) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Email, password, FullName })
+    };
+
+    return fetch(`https://localhost:7282/api/users/Register`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            
+            return user;
+        });
+}
+
 
 function logout() {
     // remove user from local storage to log user out
