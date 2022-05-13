@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { eventService } from '../ServicesHelp//event.service';
 
 export default {
   data() {
@@ -54,9 +54,7 @@ export default {
   },
   methods: {
     async CreateEvent() {
-      axios
-        .post("https://localhost:7282/api/events", this.Event)
-        .then((response) => (this.CreateResponse = response.data));
+      eventService.create(this.Event).then(response => this.CreateResponse = response.data);
     },
   },
 };

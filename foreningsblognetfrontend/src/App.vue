@@ -34,6 +34,7 @@ export default {
     },
     watch:{
         $route (to, from){
+          console.log(to, from);
             // clear alert on location change
             this.$store.dispatch('alert/clear');
         }
