@@ -6,30 +6,30 @@
                 <h1>skriv dig op!</h1>
                 <p>Udfyld tingene tak.</p>
                 <hr>
-                <form @submit.prevent="handleRegisterSubmit">
+               <form @submit.prevent>
                 <label for="FullName"><b>FullName</b></label>
-                <input v-model="FullName" ref="FullName" type="text" placeholder="Enter FullName" name="FullName" :class="{ 'is-invalid': submitted && !FullName }"/>
-                <div v-show="submitted && !FullName" class="invalid-feedback">FullName is required</div>
+                <input v-model="user.FullName" ref="FullName" type="text" placeholder="Enter FullName" name="FullName" :class="{ 'is-invalid': submitted && !user.FullName }"/>
+                <div v-show="submitted && !user.FullName" class="invalid-feedback">FullName is required</div>
                    
 
                 <label for="email"><b>Email</b></label>
-                <input v-model="Email" ref="email" type="email" placeholder="Enter Email" name="Email" :class="{ 'is-invalid': submitted && !Email }"/>
-                <div v-show="submitted && !Email" class="invalid-feedback">Email is required</div>
+                <input v-model="user.Email" ref="email" type="email" placeholder="Enter Email" name="Email" :class="{ 'is-invalid': submitted && !user.Email }"/>
+                <div v-show="submitted && !user.Email" class="invalid-feedback">Email is required</div>
 
  
                 <label for="psw"><b>Password</b></label>
-                <input v-model="password" ref="psw" type="password" placeholder="Enter Password" name="psw" :class="{ 'is-invalid': submitted && !password }"/>
-                <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
+                <input v-model="user.password" ref="psw" type="password" placeholder="Enter Password" name="psw" :class="{ 'is-invalid': submitted && !user.password }"/>
+                <div v-show="submitted && !user.password" class="invalid-feedback">Password is required</div>
 
                 <label for="psw-repeat"><b>Repeat Password</b></label>
-                <input v-model="repeatPassword" type="password" placeholder="Repeat Password" name="psw-repeat" :class="{ 'is-invalid': submitted && !password }"/>
-                <div v-show="submitted && !password" class="invalid-feedback">reapeat Password</div>
+                <input v-model="user.repeatPassword" type="password" placeholder="Repeat Password" name="psw-repeat"/>
+                
 
                 <p>Big chunkes <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn" v-on:click="back">Nevermind</button>
-                    <button type="submit" class="signupbtn" :disabled="RegisterRun">Skriv mig op</button>
+                    <button type="submit" class="signupbtn" @click="handleRegisterSubmit" :disabled="RegisterRun">Skriv mig op</button>
                 </div>
                 </form>
             </div>
@@ -48,9 +48,9 @@ export default({
                 Email:"",
                 password:"",
                 repeatPassword:"",
-                Fullname:"",
-                submitted: false
+                FullName:"",
             },
+                submitted: false
         }
     },
     computed: {
@@ -65,12 +65,11 @@ export default({
         handleRegisterSubmit () {
             if(this.checkValidation()){
             this.submitted = true;
-            
             const { Email, password, FullName } = this.user;
             const { dispatch } = this.$store;
             if (Email && password && FullName) {
                 dispatch('RegisterUser/Register', { Email, password, FullName });
-            }  
+               }  
             } 
         },
         back(){
@@ -78,28 +77,28 @@ export default({
         },
 
         checkValidation(){
-            if(!this.Fullname){
-                console.log(this.Fullname)
+            
+            if(!this.user.FullName){
                 this.$refs.FullName.focus();
                 Swal.fire("Giv FullName !");
                 return;
             }
-            if(!this.Email){
+            if(!this.user.Email){
                 this.$refs.Email.focus();
                 Swal.fire("Giv email !");
                 return;
             }
-            if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/).test(this.Email)){
+            if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/).test(this.user.Email)){
                 this.$refs.Email.focus();
                 Swal.fire("Ugyldig email !");
                 return;
             }
-            if(!this.password){
+            if(!this.user.password){
                 this.$refs.psw.focus();
                 Swal.fire("Giv password !");
                 return;
             }
-            if(this.password != this.repeatPassword){
+            if(this.user.password != this.user.repeatPassword){
                 this.$refs.psw.focus();
                 Swal.fire("Password var ikke det samme !");
                 return;
