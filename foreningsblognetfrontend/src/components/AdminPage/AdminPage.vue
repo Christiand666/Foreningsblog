@@ -1,13 +1,15 @@
 <template>
    <div>
         <h1>Admin</h1>
-        <p>This page can only be accessed by administrators.</p>
         <div>
-            <h1>{{user}}</h1>
-            All users from secure (admin only) api end point:
-            <ul v-if="users.length">
-                <li v-for="user in users" :key="user.id">
-                    {{user.fullName}}
+        <b-table
+        :items="items" 
+        >
+        </b-table>
+    
+            <ul v-if="items.length">
+                <li v-for="user in items" :key="user.id">
+                    {{user.fullName + '' + user.email}}
                 </li>
             </ul>
         </div>
@@ -16,15 +18,21 @@
 
 <script>
 import { authenticationService, userService } from '../ServicesHelp';
+
 export default {
     data () {
         return {
             user: authenticationService.currentUserValue,
-            users: []
+            items: 
+            [ ],
+            fields: ['id', 'first_name', 'Email', {
+                key: 'actions',
+                label: ''
+                }]
         };
     },
     created () {
-        userService.getAll().then(users => this.users = users);
+        userService.getAll().then(items => this.items = items);
     }
 };
 </script>
