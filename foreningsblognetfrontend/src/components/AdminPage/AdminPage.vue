@@ -3,15 +3,19 @@
         <h1>Admin</h1>
         <div>
         <b-table
-        :items="items" 
+        hover head-variant="dark"
+        :items="items" :fields="fields" 
         >
+        <template v-slot:cell(actions)="{ item }">
+        <button @click="DeleteItem(item)" >Delete</button>
+        </template>
         </b-table>
     
-            <ul v-if="items.length">
+            <!-- <ul v-if="items.length">
                 <li v-for="user in items" :key="user.id">
                     {{user.fullName + '' + user.email}}
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </template>
@@ -24,15 +28,16 @@ export default {
         return {
             user: authenticationService.currentUserValue,
             items: 
-            [ ],
-            fields: ['id', 'first_name', 'Email', {
-                key: 'actions',
-                label: ''
-                }]
+            [{id: 'id', fullName:'fullName', email:'email', role:'role'}],
+            fields: ["id", "fullName", "email","role", "actions"]
+            
         };
     },
     created () {
         userService.getAll().then(items => this.items = items);
+    },
+    methods:{
+        DeleteItem(item){ console.log(item); }
     }
 };
 </script>
