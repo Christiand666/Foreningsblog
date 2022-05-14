@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     async Attend(eventId) {
-      eventService.attend(6, eventId).then(response => this.CreateResponse = response.data);
+      const user = JSON.parse(localStorage.getItem('user'));
+      eventService.attend(eventId, user.id).then(response => this.CreateResponse = response.data);
     },
   },
   beforeMount() {
