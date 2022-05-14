@@ -10,12 +10,6 @@
         <button @click="DeleteItem(item)" >Delete</button>
         </template>
         </b-table>
-    
-            <!-- <ul v-if="items.length">
-                <li v-for="user in items" :key="user.id">
-                    {{user.fullName + '' + user.email}}
-                </li>
-            </ul> -->
         </div>
     </div>
 </template>
