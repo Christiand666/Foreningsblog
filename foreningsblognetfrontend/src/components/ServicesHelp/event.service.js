@@ -8,12 +8,7 @@ export const eventService = {
 };
 
 function attend(EventId, UserId) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-    };
-
-    return fetch(`https://localhost:7282/api/events/attend/${EventId}/${UserId}`, requestOptions)
+    return fetch(`https://localhost:7282/api/events/attend/${EventId}/${UserId}`, requestOptions.post(''))
         .then(handleResponse)
         .then(event => {
             return event;
