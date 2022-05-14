@@ -11,10 +11,9 @@ function attend(EventId, UserId) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ EventId, UserId })
     };
 
-    return fetch(`https://localhost:7282/api/events/attend`, requestOptions)
+    return fetch(`https://localhost:7282/api/events/attend/${EventId}/${UserId}`, requestOptions)
         .then(handleResponse)
         .then(event => {
             return event;
