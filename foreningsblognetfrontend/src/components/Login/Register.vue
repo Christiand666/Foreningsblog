@@ -58,9 +58,7 @@ export default({
             return this.$store.state.RegisterUser.status.RegisterRun
         }
     },
-    setup() {
-        
-    },
+    
     methods:{
         handleRegisterSubmit () {
             if(this.checkValidation()){

@@ -7,7 +7,7 @@
         :items="items" :fields="fields" 
         >
         <template v-slot:cell(actions)="{ item }">
-        <button @click="DeleteItem(item)" >Delete</button>
+        <button @click="DeleteItem(item)" :disabled="DeleteRun">Delete</button>
         </template>
         </b-table>
         </div>
@@ -23,15 +23,32 @@ export default {
             user: authenticationService.currentUserValue,
             items: 
             [{id: 'id', fullName:'fullName', email:'email', role:'role'}],
-            fields: ["id", "fullName", "email","role", "actions"]
+            fields: ["id", "fullName", "email","role", "actions"],
+            submitted: false
             
         };
+    },
+    computed: {
+        DeleteRun () {
+            return this.$store.state.DeleteUser.status.DeleteRun
+        },
+        
     },
     created () {
         userService.getAll().then(items => this.items = items);
     },
     methods:{
-        DeleteItem(item){ console.log(item); }
+        DeleteItem (item) {
+            const itemstuff = item.id
+            this.submitted = true;
+            const id = JSON.stringify(itemstuff);
+            console.log(id)
+            const { dispatch } = this.$store;
+            if (id) {
+                dispatch('DeleteUser/Delete', { id });
+               }  
+            
+        }
     }
 };
 </script>

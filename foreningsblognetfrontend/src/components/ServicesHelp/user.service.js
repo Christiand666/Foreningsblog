@@ -1,80 +1,95 @@
 import { requestOptions } from '../Helpers/request-options';
-import {store} from '../Store'
-
-
+import { store } from '../Store';
 
 export const userService = {
-    login,
-    logout,
-    getAll,
-    Register
-
+	login,
+	logout,
+	getAll,
+	Register,
+	Delete,
 };
 
 function login(Email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Email, password })
-    };
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ Email, password }),
+	};
 
-    return fetch(`https://localhost:7282/users/authenticate`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.token) {
-                store.dispatch('users/UpdateLogin', true)
-                
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-                if (user.role === 'Admin') store.dispatch('users/UpdateAdmin', true);
-            }
+	return fetch(`https://localhost:7282/users/authenticate`, requestOptions)
+		.then(handleResponse)
+		.then((user) => {
+			// login successful if there's a jwt token in the response
+			if (user.token) {
+				store.dispatch('users/UpdateLogin', true);
 
-            return user;
-        });
+				// store user details and jwt token in local storage to keep user logged in between page refreshes
+				localStorage.setItem('user', JSON.stringify(user));
+				if (user.role === 'Admin')
+					store.dispatch('users/UpdateAdmin', true);
+			}
+
+			return user;
+		});
 }
 
 function Register(Email, password, FullName) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Email, password, FullName })
-    };
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ Email, password, FullName }),
+	};
 
-    return fetch(`https://localhost:7282/api/users/Register`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            
-            return user;
-        });
+	return fetch(`https://localhost:7282/api/users/Register`, requestOptions)
+		.then(handleResponse)
+		.then((user) => {
+			return user;
+		});
 }
 
-
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-    store.dispatch('users/UpdateLogin', false);
+	// remove user from local storage to log user out
+	localStorage.removeItem('user');
+	store.dispatch('users/UpdateLogin', false);
 }
 
 function getAll() {
-    return fetch(`https://localhost:7282/users`, requestOptions.get())
-        .then(handleResponse);
+	return fetch(`https://localhost:7282/users`, requestOptions.get()).then(
+		handleResponse
+	);
+}
+
+function Delete(id) {
+	const requestOptions6 = {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ id }),
+        
+	};
+    
+	return fetch(`https://localhost:7282/users/DeleteUser`,
+		requestOptions6.get()
+	)
+		.then(handleResponse)
+		.then((user) => {
+			return user;
+		});
 }
 
 function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if ([401, 403].indexOf(response.status) !== -1) {
-                // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
-            }
+	return response.text().then((text) => {
+		const data = text && JSON.parse(text);
+		if (!response.ok) {
+			if ([401, 403].indexOf(response.status) !== -1) {
+				// auto logout if 401 response returned from api
+				logout();
+				location.reload(true);
+			}
 
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
+			const error = (data && data.message) || response.statusText;
+			return Promise.reject(error);
+		}
 
-        return data;
-    });
+		return data;
+	});
 }

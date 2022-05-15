@@ -3,6 +3,7 @@ import {alert} from './alert.module';
 import {authentication}  from './authentication.module';
 import {users}  from './users.module';
 import {RegisterUser} from './RegisterStore.module';
+import {DeleteUser} from './DeleteStore.Module';
 
 
 export const store = new Vuex.Store({
@@ -10,6 +11,7 @@ export const store = new Vuex.Store({
         alert,
         authentication,
         users,
-        RegisterUser
+        RegisterUser,
+        DeleteUser
     }
 });
