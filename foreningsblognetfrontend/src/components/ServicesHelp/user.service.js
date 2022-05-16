@@ -59,16 +59,9 @@ function getAll() {
 	);
 }
 
-function Delete(id) {
-	const requestOptions = {
-		method: 'DELETE',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ id }),
-        
-	};
-    
+function Delete(id) {    
 	return fetch(`https://localhost:7282/users/DeleteUser`,
-		requestOptions.get()
+        requestOptions.delete(id)
 	)
 		.then(handleResponse)
 		.then((user) => {
@@ -77,8 +70,9 @@ function Delete(id) {
 }
 
 function handleResponse(response) {
-	return response.text().then((text) => {
-		const data = text && JSON.parse(text);
+    return response.text().then((text) => {
+        const data = text && JSON.parse(text);
+        console.log(data)
 		if (!response.ok) {
 			if ([401, 403].indexOf(response.status) !== -1) {
 				// auto logout if 401 response returned from api
