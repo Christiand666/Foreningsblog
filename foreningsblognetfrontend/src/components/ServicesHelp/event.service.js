@@ -16,13 +16,7 @@ function attend(EventId, UserId) {
 }
 
 function create(ev) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ev })
-    };
-
-    return fetch(`https://localhost:7282/api/events`, requestOptions)
+    return fetch(`https://localhost:7282/api/events`, requestOptions.post(ev))
         .then(handleResponse)
         .then(event => {
             return event;
