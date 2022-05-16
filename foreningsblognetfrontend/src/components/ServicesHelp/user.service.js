@@ -60,7 +60,7 @@ function getAll() {
 }
 
 function Delete(id) {
-	const requestOptions6 = {
+	const requestOptions = {
 		method: 'DELETE',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ id }),
@@ -68,7 +68,7 @@ function Delete(id) {
 	};
     
 	return fetch(`https://localhost:7282/users/DeleteUser`,
-		requestOptions6.get()
+		requestOptions.get()
 	)
 		.then(handleResponse)
 		.then((user) => {

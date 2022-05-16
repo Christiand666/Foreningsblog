@@ -39,13 +39,13 @@ export default {
     },
     methods:{
         DeleteItem (item) {
-            const id = item.id
+            const userid = item.id
             this.submitted = true;
-            const {Userid} = JSON.stringify(id);
-            console.log(Userid)
+            const id = userid;
+            console.log(id)
             const { dispatch } = this.$store;
-            if (Userid) {
-                dispatch('DeleteUser/Delete', { Userid });
+            if (id) {
+                dispatch('DeleteUser/Delete', { id });
                }  
             
         }
