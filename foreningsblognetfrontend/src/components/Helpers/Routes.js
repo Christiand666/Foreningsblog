@@ -44,6 +44,7 @@ const routes =
       path: "/events/create",
       name:"CreateEvent",
       component: CreateEvent,
+      meta: { authorize: [Role.Admin] } 
     },
     {
       path: "/404",
