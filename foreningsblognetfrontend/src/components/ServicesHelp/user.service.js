@@ -64,8 +64,8 @@ function getAll() {
 
 function Delete(id) {
 	return fetch(
-		`https://localhost:7282/api/users/DeleteUser`,
-		requestOptions.delete(id)
+		`https://localhost:7282/api/users/DeleteUser/${id}`,
+		requestOptions.delete('')
 	)
 		.then(handleResponse)
 		.then((user) => {
