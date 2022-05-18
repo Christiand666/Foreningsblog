@@ -16,7 +16,10 @@ function login(Email, password) {
 		body: JSON.stringify({ Email, password }),
 	};
 
-	return fetch(`https://localhost:7282/users/authenticate`, requestOptions)
+	return fetch(
+		`https://localhost:7282/api/users/authenticate`,
+		requestOptions
+	)
 		.then(handleResponse)
 		.then((user) => {
 			// login successful if there's a jwt token in the response
@@ -54,14 +57,15 @@ function logout() {
 }
 
 function getAll() {
-	return fetch(`https://localhost:7282/users`, requestOptions.get()).then(
+	return fetch(`https://localhost:7282/api/users`, requestOptions.get()).then(
 		handleResponse
 	);
 }
 
-function Delete(id) {    
-	return fetch(`https://localhost:7282/users/DeleteUser`,
-        requestOptions.delete(id)
+function Delete(id) {
+	return fetch(
+		`https://localhost:7282/api/users/DeleteUser`,
+		requestOptions.delete(id)
 	)
 		.then(handleResponse)
 		.then((user) => {
@@ -70,9 +74,9 @@ function Delete(id) {
 }
 
 function handleResponse(response) {
-    return response.text().then((text) => {
-        const data = text && JSON.parse(text);
-        console.log(data)
+	return response.text().then((text) => {
+		const data = text && JSON.parse(text);
+		console.log(data);
 		if (!response.ok) {
 			if ([401, 403].indexOf(response.status) !== -1) {
 				// auto logout if 401 response returned from api
