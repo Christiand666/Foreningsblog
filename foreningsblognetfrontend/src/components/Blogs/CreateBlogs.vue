@@ -58,6 +58,9 @@ export default {
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));
+        if(!this.blog){
+          this.$router.push({ name: 'Blogs' });
+        }
     },
   },
 };

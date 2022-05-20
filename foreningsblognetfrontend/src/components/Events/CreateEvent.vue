@@ -85,6 +85,9 @@ export default {
       eventService
         .create(this.Evnt)
         .then((response) => (this.CreateResponse = response.data));
+        if(!this.blog){
+          this.$router.push({ name: 'events' });
+        }
     },
     getNow() {
       const today = new Date();

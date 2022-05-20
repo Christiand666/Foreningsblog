@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <a v-if="$store.state.users.isLoggedIn" class="link-success my-5" href="/Blogs/create">Create new Blog</a>
+    <a v-if="error">Noget gik galt</a>
     <div class="col-sm-6">
       <div 
         v-for="blog in Blogs"
@@ -35,7 +36,10 @@ export default {
     },
   },
   beforeMount() {
-    blogService.getAll().then((blogs) => (this.Blogs = blogs));
+    blogService.getAll().then((blogs) => (this.Blogs = blogs))
+    .catch((error) => {
+      console.error("Error:", error);
+    })
   },
 };
 </script>
