@@ -15,8 +15,8 @@ function attend(BlogId, UserId) {
         });
 }
 
-function create(ev) {
-    return fetch('https://localhost:7282/api/blogs', requestOptions.post(ev))
+function create(UserId) {
+    return fetch('https://localhost:7282/api/blogs', requestOptions.post(UserId))
         .then(handleResponse)
         .then(blog => {
             return blog;

@@ -23,10 +23,10 @@
 
       <label for="place">Author</label>
       <input
-        v-model="Blog.Place"
+        v-model="Blog.author"
         type="text"
-        id="place"
-        name="place"
+        id="author"
+        name="author"
         placeholder="Forfatteren..."
       />
 
@@ -54,6 +54,7 @@ export default {
     async CreateBlogs() {
       const user = JSON.parse(localStorage.getItem("user"));
       this.Blog.userid=user.id
+      console.log(this.Blog.userid=user.id)
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));

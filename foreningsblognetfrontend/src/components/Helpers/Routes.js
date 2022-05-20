@@ -13,58 +13,58 @@ import {Role} from "../Helpers/role.js"
 const Notfound = () => import("../ErrorPages/404.vue")
 
 
-const routes = 
- [
-    {
-      path: "/",
-      alias: ['/'],
-      name:"Home",
-      component: Home,
-      //meta: { authorize: [] }  
-    },
-    {
-      path: '/admin', 
-      component: Admin, 
-      meta: { authorize: [Role.Admin] } 
-    },
-    {
-      path: "/login",
-      name:"Login",
-      component: Login,
-    },
-    {
-      path: "/register",
-      name:"Register",
-      component: Register,
-    },
-    {
-      path: "/events",
-      name:"Events",
-      component: Events,
-    },
-    {
-      path: "/events/create",
-      name:"CreateEvent",
-      component: CreateEvent,
-      meta: { authorize: [Role.Admin] } 
-    },
-    {
-      path: "/Blogs",
-      name:"Blogs",
-      component: Blogs,
-    },
-    {
-      path: "/Blogs/create",
-      name:"CreateBlogs",
-      component: CreateBlogs,
-    },
-    
-    {
-      path: "/404",
-      name: "404",
-      component: Notfound,
-    }
-  ];
+const routes = [
+	{
+		path: '/',
+		alias: ['/'],
+		name: 'Home',
+		component: Home,
+		//meta: { authorize: [] }
+	},
+	{
+		path: '/admin',
+		component: Admin,
+		meta: { authorize: [Role.Admin] },
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: Login,
+	},
+	{
+		path: '/register',
+		name: 'Register',
+		component: Register,
+	},
+	{
+		path: '/events',
+		name: 'Events',
+		component: Events,
+	},
+	{
+		path: '/events/create',
+		name: 'CreateEvent',
+		component: CreateEvent,
+		meta: { authorize: [Role.Admin] },
+	},
+	{
+		path: '/Blogs',
+		name: 'Blogs',
+		component: Blogs,
+	},
+	{
+		path: '/Blogs/create',
+		name: 'CreateBlogs',
+		component: CreateBlogs,
+		meta: { authorize: [] }
+	},
+
+	{
+		path: '/404',
+		name: '404',
+		component: Notfound,
+	},
+];
 
   const router = createRouter({
     history: createWebHistory(),
