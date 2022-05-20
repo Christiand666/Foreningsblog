@@ -6,6 +6,8 @@
   <li v-if="$store.state.users.isLoggedIn"><a href="/login">Logout</a></li>
   <li v-if="$store.state.users.isAdmin"><a href="/admin">Admin</a></li>
 	<li><a href="/events">Events</a></li>
+  <li><a href="/Blogs">Blogs</a></li>
+
 	</ul>  
 </div>
 </template>

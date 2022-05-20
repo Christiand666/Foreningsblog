@@ -2,6 +2,8 @@ const {createRouter, createWebHistory } = require("vue-router");
 import Login from "../Login/Login.vue"
 import Events from "../Events/Events.vue"
 import CreateEvent from "../Events/CreateEvent.vue"
+import Blogs from "../Blogs/Blogs.vue"
+import CreateBlogs from "../Blogs/CreateBlogs.vue"
 import Register from "../Login/Register.vue"
 import Home from "../Home/Home.vue";
 import Admin from "../AdminPage/AdminPage.vue"
@@ -46,6 +48,17 @@ const routes =
       component: CreateEvent,
       meta: { authorize: [Role.Admin] } 
     },
+    {
+      path: "/Blogs",
+      name:"Blogs",
+      component: Blogs,
+    },
+    {
+      path: "/Blogs/create",
+      name:"CreateBlogs",
+      component: CreateBlogs,
+    },
+    
     {
       path: "/404",
       name: "404",
