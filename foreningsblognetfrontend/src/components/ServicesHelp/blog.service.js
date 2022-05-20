@@ -3,17 +3,10 @@ import { requestOptions } from '../Helpers/request-options';
 export const blogService = {
     getAll,
     create,
-    attend
+    
 
 };
 
-function attend(BlogId, UserId) {
-    return fetch(`https://localhost:7282/api/blogs/attend/${BlogId}/${UserId}`, requestOptions.post(''))
-        .then(handleResponse)
-        .then(blog => {
-            return blog;
-        });
-}
 
 function create(UserId) {
     return fetch('https://localhost:7282/api/blogs', requestOptions.post(UserId))
@@ -21,6 +14,7 @@ function create(UserId) {
         .then(blog => {
             return blog;
         });
+        
 }
 
 function getAll() {
