@@ -37,7 +37,7 @@
 
 <script>
 import { blogService} from "../ServicesHelp//blog.service";
-import router from '../Helpers/Routes';
+
 
 export default {
   data() {
@@ -59,7 +59,8 @@ export default {
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));
-        router.replace({path: "/Blogs"});     
+        localStorage.removeItem('reloaded');
+        this.$router.push({path: "/Blogs"});  
     },
   },
   

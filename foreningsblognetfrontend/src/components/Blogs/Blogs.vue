@@ -37,9 +37,13 @@ export default {
         .then((response) => (this.CreateResponse  = response.data));
     },
   },
-  beforeMount() {
+  beforeMount() { 
     blogService.getAll().then((blogs) => (this.Blogs = blogs))
-    
+    const reloaded = localStorage.getItem('reloaded');
+      if (reloaded !== 'true') {
+       localStorage.setItem('reloaded', 'true');
+       location.reload();
+      }
   },
 };
 </script>

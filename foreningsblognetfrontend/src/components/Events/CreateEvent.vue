@@ -63,7 +63,7 @@
 
 <script>
 import { eventService } from "../ServicesHelp//event.service";
-import router from '../Helpers/Routes';
+// import router from '../Helpers/Routes';
 
 export default {
   data() {
@@ -86,7 +86,7 @@ export default {
       eventService
         .create(this.Evnt)
         .then((response) => (this.CreateResponse = response.data));
-        router.replace({path: "/Events"});
+        this.$router.push({path: "/Events/${}"});
     },
     getNow() {
       const today = new Date();
