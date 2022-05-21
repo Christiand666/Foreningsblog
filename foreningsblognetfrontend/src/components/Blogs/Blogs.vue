@@ -11,7 +11,10 @@
       >
         <div  class="card-body">
           <h5 class="card-title">{{ blog.title }}</h5>
-          <p class="card-text">{{ blog.description }}</p>    
+          <p class="card-text">{{ blog.description }}</p>  
+           <button v-on:click="Delete(blog.id)" class="btn btn-danger">
+            Slet
+           </button>
         </div>
       </div>
     </div>
@@ -28,14 +31,13 @@ export default {
     };
   },
   methods: {
-    async Attend(blogId) {
-      const user = JSON.parse(localStorage.getItem("user"));
-      blogService
-        .attend(blogId, user.id)
+    async Delete(blogId){
+       blogService
+        .Delete(blogId)
         .then((response) => (this.CreateResponse  = response.data));
     },
   },
-  beforeMount() {
+  mounted() {
     blogService.getAll().then((blogs) => (this.Blogs = blogs))
     .catch((error) => {
       console.error("Error:", error);

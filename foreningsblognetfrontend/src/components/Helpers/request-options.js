@@ -44,6 +44,7 @@ function headers() {
         headers: {
             ...authHeader,
             'Content-Type': 'application/json'
+            
         }
     }
 }

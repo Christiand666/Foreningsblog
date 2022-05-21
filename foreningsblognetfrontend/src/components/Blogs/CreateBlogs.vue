@@ -60,8 +60,7 @@ export default {
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));
-        router.replace({path: "/Blogs"});
-        
+        router.replace({path: "/Blogs"});       
     },
   },
   

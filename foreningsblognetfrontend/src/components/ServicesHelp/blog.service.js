@@ -3,8 +3,7 @@ import { requestOptions } from '../Helpers/request-options';
 export const blogService = {
     getAll,
     create,
-    
-
+    Delete
 };
 
 
@@ -21,6 +20,11 @@ function getAll() {
     return fetch(`https://localhost:7282/api/blogs`, requestOptions.get())
         .then(handleResponse);
 }
+
+function Delete(id) {
+    return fetch(`https://localhost:7282/api/blogs/${id}`, requestOptions.delete())
+        .then(handleResponse);
+    }
 
 function handleResponse(response) {
     return response.text().then(text => {
