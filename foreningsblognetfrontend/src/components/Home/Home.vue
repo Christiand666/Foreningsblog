@@ -1,35 +1,43 @@
 <template>
-  <div class="col-md-12">
-    
-
-    <button type="button" class="Hello" v-on:click="GetUsers">
-      ListofUsers
-    </button>
-    <div id="app">
-      {{ Users }}
+  <div class="row">
+    <a v-if="$store.state.users.isLoggedIn" class="link-success my-5" href="/Blogs/create">Create new Blog</a>
+    <a v-if="error">Noget gik galt</a>
+    <div class="col-sm-6">
+      <div 
+        v-for="blog in Blogs"
+        :key="blog.id"
+        class="card"
+        style="width: 18rem"
+      >
+        <div  class="card-body">
+          <h5 class="card-title">{{ blog.title }}</h5>
+          <p class="card-text">{{ blog.description }}</p>  
+          
+        </div>
+      </div>
     </div>
-        <p>
-            <router-link to="/login">Logout</router-link>
-        </p>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { blogService} from "../ServicesHelp//blog.service";
 
 export default {
-    data(){
-        return{
-            Users:[]
-        }
-    },
+  data() {
+    return {
+      Blogs: [],
+    };
+  },
   methods: {
-    async GetUsers() {
-      axios
-        .get("https://localhost:49165/api/users")
-        .then((response) => (this.Users = response.data));
-    },
-
+    
+  },
+  beforeMount() { 
+    blogService.getAll().then((blogs) => (this.Blogs = blogs))
+    const reloaded = localStorage.getItem('reloaded');
+      if (reloaded !== 'true') {
+       localStorage.setItem('reloaded', 'true');
+       location.reload();
+      }
   },
 };
 </script>
