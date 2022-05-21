@@ -56,11 +56,10 @@ export default {
     async CreateBlogs() {
       const user = JSON.parse(localStorage.getItem("user"));
       this.Blog.userid=user.id
-      console.log(this.Blog.userid=user.id)
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));
-        router.replace({path: "/Blogs"});       
+        router.replace({path: "/Blogs"});     
     },
   },
   

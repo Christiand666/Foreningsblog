@@ -86,7 +86,7 @@ export default {
       eventService
         .create(this.Evnt)
         .then((response) => (this.CreateResponse = response.data));
-        router.replace({path: "/Blogs"});
+        router.replace({path: "/Events"});
     },
     getNow() {
       const today = new Date();

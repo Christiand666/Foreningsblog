@@ -37,11 +37,9 @@ export default {
         .then((response) => (this.CreateResponse  = response.data));
     },
   },
-  mounted() {
+  beforeMount() {
     blogService.getAll().then((blogs) => (this.Blogs = blogs))
-    .catch((error) => {
-      console.error("Error:", error);
-    })
+    
   },
 };
 </script>
