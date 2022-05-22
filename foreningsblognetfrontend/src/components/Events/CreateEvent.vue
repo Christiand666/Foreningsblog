@@ -55,7 +55,6 @@
           </div>
         </div>
       </div>
-      {{CreateResponse}}
       <button class="btn btn-success" v-on:click="CreateEvent">Opret</button>
     </div>
   </div>
@@ -63,7 +62,6 @@
 
 <script>
 import { eventService } from "../ServicesHelp//event.service";
-// import router from '../Helpers/Routes';
 
 export default {
   data() {

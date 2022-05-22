@@ -7,6 +7,8 @@ export const eventService = {
 	attend,
 };
 
+// Calls the attend method in events controller, with EventId and UserId via the URL
+// json body is empty
 function attend(EventId, UserId) {
 	return fetch(
 		`https://localhost:7282/api/events/attend/${EventId}/${UserId}`,
@@ -18,6 +20,8 @@ function attend(EventId, UserId) {
 		});
 }
 
+// Calls the create method (the only HttpPost method) in events controller
+// body should be event
 function create(ev) {
 	return fetch(`https://localhost:7282/api/events`, requestOptions.post(ev))
 		.then(handleResponse)
@@ -26,6 +30,7 @@ function create(ev) {
 		});
 }
 
+// Calls the get method in events controller, without body or other parameters
 function getAll() {
 	return fetch(
 		`https://localhost:7282/api/events`,
