@@ -9,7 +9,7 @@
         class="card"
         style="width: 18rem"
       >
-        <div class="card-body">
+        <div  class="card-body">
           <h5 class="card-title">{{ blog.title }}</h5>
           <p class="card-text">{{ blog.description }}</p>  
            <button v-on:click="Delete(blog.id)" class="btn btn-danger">
@@ -35,8 +35,6 @@ export default {
        blogService
         .Delete(blogId)
         .then((response) => (this.CreateResponse  = response.data));
-        localStorage.setItem('reloaded', 'true');
-        location.reload();
     },
   },
   beforeMount() { 

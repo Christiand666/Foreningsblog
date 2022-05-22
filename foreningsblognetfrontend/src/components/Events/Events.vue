@@ -13,9 +13,6 @@
           <button v-on:click="Attend(event.id)" class="btn btn-success">
             Tilmeld dig!
           </button>
-          <button v-on:click="Delete(event.id)" class="btn btn-danger">
-            Slet
-          </button>
         </div>
       </div>
     </div>
@@ -38,17 +35,9 @@ export default {
         .attend(eventId, user.id)
         .then((response) => (this.CreateResponse = response.data));
     },
-    
-    async Delete(eventId){
-       eventService
-        .Delete(eventId)
-        .then((response) => (this.CreateResponse  = response.data));
-        localStorage.setItem('reloaded', 'true');
-        location.reload();
   },
   beforeMount() {
     eventService.getAll().then((events) => (this.Events = events));
-      }
-    },
-  }
+  },
+};
 </script>
