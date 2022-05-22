@@ -84,6 +84,7 @@ export default {
         .create(this.Evnt)
         .then((response) => (
           response ? alert("Event oprettet succesfuldt") : ""));
+           localStorage.removeItem('EventReloaded');
         this.$router.push({path: "/Events/${}"});
     },
     getNow() {

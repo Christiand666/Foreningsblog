@@ -38,6 +38,11 @@ export default {
   },
   beforeMount() {
     eventService.getAll().then((events) => (this.Events = events));
+    const reloaded = localStorage.getItem('EventReloaded');
+      if (reloaded !== 'true') {
+       localStorage.setItem('EventReloaded', 'true');
+       location.reload();
+      }
   },
 };
 </script>
