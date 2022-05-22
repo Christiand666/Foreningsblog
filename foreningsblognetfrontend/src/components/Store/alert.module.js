@@ -18,6 +18,7 @@ export const alert = {
 		},
 	},
 	//mutations based on action
+	//viewcontroller
 	mutations: {
 		success(state, message) {
 			state.type = 'alert-success';

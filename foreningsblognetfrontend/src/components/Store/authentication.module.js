@@ -35,6 +35,7 @@ export const authentication = {
 		},
 	},
 	//mutations based on action
+	//viewcontroller
 	mutations: {
 		loginRequest(state, user) {
 			state.status = { loggingIn: true };

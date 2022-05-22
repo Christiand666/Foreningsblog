@@ -40,7 +40,9 @@
 <script>
 
 import Swal from 'sweetalert2';
-
+// exports the credentiels to the store Registeruser/register returns state-status and disabled the button untill the respond is returned
+// swalt helps the user knowing if the credentiels is correct inputed
+//model
 export default({
     data(){
         return{
@@ -53,6 +55,7 @@ export default({
                 submitted: false
         }
     },
+    //Viewmodel
     computed: {
         RegisterRun () {
             return this.$store.state.RegisterUser.status.RegisterRun

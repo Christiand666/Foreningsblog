@@ -17,6 +17,8 @@
 <script>
 import { authenticationService, userService } from '../ServicesHelp';
 
+// exports the credentiels to the store DeleteUser/Delete returns state-status and disabled the button untill the respond is returned
+//model
 export default {
     data () {
         return {
@@ -28,6 +30,7 @@ export default {
             
         };
     },
+    //Viewmodel
     computed: {
         DeleteRun () {
             return this.$store.state.DeleteUser.status.DeleteRun

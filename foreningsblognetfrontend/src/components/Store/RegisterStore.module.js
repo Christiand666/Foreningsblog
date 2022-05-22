@@ -33,6 +33,7 @@ export const RegisterUser = {
        
     },
     //mutations based on action
+    //viewcontroller
     mutations: {
         RegisterRequest(state, user){
             state.status = {};

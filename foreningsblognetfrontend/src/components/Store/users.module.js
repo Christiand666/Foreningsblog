@@ -39,6 +39,7 @@ export const users = {
 		},
 	},
 	//mutations based on action
+	//viewcontroller
 	mutations: {
 		getAllRequest(state) {
 			state.all = { loading: true };

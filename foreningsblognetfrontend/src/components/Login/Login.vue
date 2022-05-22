@@ -29,7 +29,8 @@
 
 <script>
 
-
+// exports the credentiels to the store authentication/login returns state-status and disabled the button untill the respond is returned
+//model
 export default {
     data () {
         return {
@@ -38,6 +39,7 @@ export default {
             submitted: false
         }
     },
+    //Viewmodel
     computed: {
         loggingIn () {
             return this.$store.state.authentication.status.loggingIn;

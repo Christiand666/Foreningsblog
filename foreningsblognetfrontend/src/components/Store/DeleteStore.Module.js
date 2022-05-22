@@ -26,6 +26,7 @@ export const DeleteUser = {
 		},
 	},
 	//mutations based on action
+	//viewcontroller
 	mutations: {
 		DeleteRequest(state, user) {
 			state.status = {};

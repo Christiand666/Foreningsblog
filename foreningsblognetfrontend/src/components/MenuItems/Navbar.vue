@@ -14,7 +14,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-
+//ViewModel
 export default({
     name: 'Navbar',
         
