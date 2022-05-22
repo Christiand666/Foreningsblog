@@ -5,6 +5,7 @@ export const eventService = {
 	getAll,
 	create,
 	attend,
+	Delete
 };
 
 // Calls the attend method in events controller, with EventId and UserId via the URL
@@ -37,6 +38,12 @@ function getAll() {
 		`https://localhost:7282/api/events`,
 		requestOptions.get()
 	).then(handleResponse);
+}
+
+// Calls delete method in event controller with id as parameter (parsed via the URL)
+function Delete(eventid) {
+	return fetch(`https://localhost:7282/api/events/${eventid}`, requestOptions.delete())
+        .then(handleResponse);
 }
 
 // our handlereponse based on our reponse converts to json format if 401 or 403 is reponded logout and reload the page.
