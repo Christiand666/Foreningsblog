@@ -21,7 +21,7 @@ export default({
     data: () => ({
 		
 	}),
-  
+  // used to check user state on navbar on loggedin and if admin 
     computed: {
       ...mapGetters(['GetLoginState', 'GetAdminState']),
       

@@ -1,11 +1,16 @@
 import { userService } from '../ServicesHelp/user.service';
 import router from '../Helpers/Routes';
+// Viewmodel
+//Controll state, Register from userservice state based on error or succes 
 
+
+// checking if the user is saved in local storage if not save it
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? { status: user }
     : { status: {}, user: null };
 
+// Store register pushes credentiels to register in userservice if succes it pushes to login page else it pushes a error    
 export const RegisterUser = {
     namespaced: true,
     state: initialState,
@@ -27,6 +32,7 @@ export const RegisterUser = {
         },
        
     },
+    //mutations based on action
     mutations: {
         RegisterRequest(state, user){
             state.status = {};

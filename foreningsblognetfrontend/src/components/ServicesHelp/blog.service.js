@@ -26,6 +26,7 @@ function Delete(id) {
         .then(handleResponse);
     }
 
+// our handlereponse based on our reponse converts to json format if 401 or 403 is reponded logout and reload the page.
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

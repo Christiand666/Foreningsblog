@@ -1,9 +1,12 @@
 import { userService } from '../ServicesHelp/user.service';
+// Viewmodel
+//Controll state, DeleteUsers from userservice state based on error or succes 
 
-
+// checks the current user in localstorage and saves it in state
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { status: user } : { status: {}, user: null };
 
+// Store Delete pushes credentiels to register in userservice based on succes else it pushes a error  
 export const DeleteUser = {
 	namespaced: true,
 	state: initialState,
@@ -22,6 +25,7 @@ export const DeleteUser = {
 			);
 		},
 	},
+	//mutations based on action
 	mutations: {
 		DeleteRequest(state, user) {
 			state.status = {};
