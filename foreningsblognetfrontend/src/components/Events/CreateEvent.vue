@@ -75,7 +75,6 @@ export default {
         StartDateTime: "2022-05-20T17:00",
         EndDateTime: "2022-05-20T18:00",
       },
-      CreateResponse: {},
     };
   },
   methods: {
@@ -83,12 +82,14 @@ export default {
       this.Evnt.CreatedDateTime = this.getNow();
       eventService
         .create(this.Evnt)
-        .then((response) => (this.CreateResponse = response.data));
+        .then((response) => (
+          response ? alert("Event oprettet succesfuldt") : ""));
         this.$router.push({path: "/Events/${}"});
     },
     getNow() {
       const today = new Date();
       var breaker = "-";
+      var timebreaker = "";
       if((today.getMonth() + 1) < 10)
         breaker = "-0";
       const date =
@@ -97,8 +98,10 @@ export default {
         (today.getMonth() + 1) +
         "-" +
         today.getDate();
+      if(today.getMinutes() < 10)
+            timebreaker = "0";
       const time =
-        today.getHours() + ":" + today.getMinutes();
+        today.getHours() + ":" + timebreaker + today.getMinutes();
       const dateTime = date + "T" + time;
       return dateTime;
     },
