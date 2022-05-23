@@ -59,8 +59,8 @@ export default {
          blogService
         .create(this.Blog)
         .then((response) => (this.CreateResponse = response.data));
-        localStorage.removeItem('reloaded');
-        this.$router.push({path: "/Blogs"});  
+       
+       setTimeout(() => {  this.$router.push({path: "/blogs"}); }, 1000);
     },
   },
   

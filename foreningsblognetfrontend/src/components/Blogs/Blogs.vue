@@ -35,21 +35,11 @@ export default {
        blogService
         .Delete(blogId)
         .then((response) => (this.CreateResponse  = response.data));
-        localStorage.removeItem('DeleteHotReload');
+       setTimeout(() => {  blogService.getAll().then((blogs) => (this.Blogs = blogs)) }, 1000);
     },
   },
   beforeMount() { 
     blogService.getAll().then((blogs) => (this.Blogs = blogs))
-    const reloaded = localStorage.getItem('reloaded');
-    const DeleteHotReload = localStorage.getItem('DeleteHotReload');
-      if (reloaded !== 'true') {
-       localStorage.setItem('reloaded', 'true');
-       location.reload();
-      }
-      if (DeleteHotReload !== 'true') {
-       localStorage.setItem('DeleteHotReload', 'true');
-       location.reload();
-      }
   },
 };
 </script>
